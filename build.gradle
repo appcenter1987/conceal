@@ -17,6 +17,7 @@ android {
 
     dependencies {
         compile 'com.google.code.findbugs:jsr305:3.0.2'
+        compile 'com.facebook.soloader:soloader:10.0.5'
     }
 
     compileSdkVersion 23
@@ -34,7 +35,6 @@ android {
         java.srcDirs = [
             'first-party/fbjni/java',
             'first-party/proguard/annotations',
-            'first-party/soloader',
             'java']
         jniLibs.srcDir 'libs'
         jni.srcDirs = []
