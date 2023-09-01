@@ -1,14 +1,16 @@
 buildscript {
     repositories {
         mavenCentral()
+        google()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.6.4'
     }
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
     repositories {
@@ -16,16 +18,16 @@ android {
     }
 
     dependencies {
-        compile 'com.google.code.findbugs:jsr305:3.0.2'
-        compile 'com.facebook.soloader:soloader:10.0.5'
+        implementation 'com.google.code.findbugs:jsr305:3.0.2'
+        implementation 'com.facebook.soloader:soloader:0.10.5'
     }
 
-    compileSdkVersion 23
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 34
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
-      minSdkVersion 9
-      targetSdkVersion 17
+      minSdkVersion 19
+      targetSdkVersion 34
     }
 
     sourceSets {
@@ -62,7 +64,7 @@ android {
 if (!project.hasProperty('sonatypeRepo') ||
     !project.hasProperty('sonatypeUsername') ||
     !project.hasProperty('sonatypePassword')) {
-  return;
+  return
 }
 
 // Maven Push
@@ -70,7 +72,7 @@ if (!project.hasProperty('sonatypeRepo') ||
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-version = "2.0.3"
+version = "2.0.4"
 group = "com.facebook.conceal"
 
 signing {
