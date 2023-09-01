@@ -15,6 +15,9 @@ apply plugin: 'maven-publish'
 android {
     repositories {
       mavenCentral()
+      google()
+      jcenter()
+
     }
 
     dependencies {
