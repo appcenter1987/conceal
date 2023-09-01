@@ -78,57 +78,33 @@ apply plugin: 'maven-publish'
 version = "2.0.4"
 group = "com.facebook.conceal"
 
-signing {
-    required { gradle.taskGraph.hasTask("uploadArchives") }
-    sign configurations.archives
-}
-
-uploadArchives {
-    configuration = configurations.archives
-    repositories.mavenDeployer {
-        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-        repository(url: sonatypeRepo) {
-            authentication(userName: sonatypeUsername, password: sonatypePassword)
-        }
-
-        pom.project {
-            name 'Conceal'
-            packaging 'aar'
-            description 'Conceal is an easy to use, performant crypto library for android.'
-            url 'http://facebook.github.io/conceal'
-
-            scm {
-                url 'scm:git@github.com:facebook/conceal.git'
-                connection 'scm:git@github.com:facebook/conceal.git'
-                developerConnection 'scm:git@github.com:facebook/conceal.git'
-            }
-
-            licenses {
-                license {
-                    name 'BSD 2-Clause License'
-                    url 'https://github.com/facebook/conceal/blob/master/LICENSE'
-                    distribution 'repo'
-                }
-            }
-
-            developers {
-                developer {
-                    id 'subodh'
-                    name 'Subodh Iyengar'
-                    email 'mani.subodh@gmail.com'
-                }
-            }
-        }
-    }
-}
-
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'com.facebook.conceal'
-            artifactId = 'conceal'
-            version = '2.0.4'
+            pom {
+                name = 'Conceal'
+                description = 'Conceal is an easy to use, performant crypto library for android.'
+                url = 'http://facebook.github.io/conceal'
+                licenses {
+                    license {
+                        name 'BSD 2-Clause License'
+                        url 'https://github.com/facebook/conceal/blob/master/LICENSE'
+                        distribution 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'subodh'
+                        name 'Subodh Iyengar'
+                        email 'mani.subodh@gmail.com'
+                    }
+                }
+                scm {
+                    url 'scm:git@github.com:facebook/conceal.git'
+                    connection 'scm:git@github.com:facebook/conceal.git'
+                    developerConnection 'scm:git@github.com:facebook/conceal.git'
+                }
+            }
         }
     }
 }
